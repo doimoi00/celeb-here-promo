@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>셀럽 히어 — 유튜버 파트너 제안</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080F;
+      --bg2: #0F0F1A;
+      --gold: #F5C842;
+      --gold-dim: #C9A22E;
+      --white: #FFFFFF;
+      --gray: #9999AA;
+      --green: #2DD4A4;
+      --purple: #8B5CF6;
+      --card-bg: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+    .logo span { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--bg);
+      font-weight: 700; font-size: 13px;
+      padding: 10px 22px; border-radius: 50px;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,200,66,0.12);
+      border: 1px solid rgba(245,200,66,0.3);
+      color: var(--gold);
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero h1 .highlight { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 80px;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--bg);
+      font-weight: 700; font-size: 15px;
+      padding: 16px 32px; border-radius: 50px;
+      text-decoration: none; transition: transform .2s, opacity .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-weight: 500; font-size: 15px;
+      padding: 16px 32px; border-radius: 50px;
+      text-decoration: none; transition: border-color .2s, background .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(245,200,66,0.08); }
+
+    /* ── MAP MOCKUP ── */
+    .map-container {
+      position: relative;
+      width: min(380px, 90vw);
+      height: 520px;
+      margin: 0 auto;
+    }
+    .phone-frame {
+      position: absolute; inset: 0;
+      border-radius: 44px;
+      border: 2px solid rgba(255,255,255,0.15);
+      background: #111118;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 120px rgba(245,200,66,0.08);
+    }
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 26px;
+      background: #111118;
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
+    }
+    .map-bg {
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.04) 40px),
+        #0E1520;
+    }
+    /* Road lines */
+    .road-h {
+      position: absolute; left: 0; right: 0; height: 18px;
+      background: #1A2535;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .road-v {
+      position: absolute; top: 0; bottom: 0; width: 18px;
+      background: #1A2535;
+      border-left: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    /* Blocks */
+    .block {
+      position: absolute;
+      background: #131F30;
+      border-radius: 4px;
+    }
+    /* Map top bar */
+    .map-topbar {
+      position: absolute; top: 26px; left: 0; right: 0;
+      height: 48px;
+      background: rgba(11,11,20,0.95);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; padding: 0 16px; gap: 10px;
+      z-index: 5;
+      border-bottom: 1px solid var(--border);
+    }
+    .map-search {
+      flex: 1; background: rgba(255,255,255,0.07);
+      border-radius: 20px; padding: 7px 14px;
+      font-size: 11px; color: var(--gray);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Markers */
+    .marker {
+      position: absolute;
+      display: flex; flex-direction: column; align-items: center;
+      cursor: pointer; z-index: 8;
+    }
+    .marker-pin {
+      width: 36px; height: 36px; border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: transform .3s;
+    }
+    .marker-pin .emoji {
+      transform: rotate(45deg);
+      font-size: 16px;
+    }
+    .marker-label {
+      margin-top: 6px;
+      background: rgba(8,8,15,0.9);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 3px 10px;
+      font-size: 10px; font-weight: 700;
+      white-space: nowrap; color: var(--white);
+    }
+    .marker-ripple {
+      position: absolute; bottom: 28px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      animation: ripple 2s ease-out infinite;
+    }
+    @keyframes ripple {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2.8); }
+    }
+
+    .m1 { top: 160px; left: 60px; animation: float1 4s ease-in-out infinite; }
+    .m2 { top: 220px; left: 180px; animation: float2 5s ease-in-out infinite; }
+    .m3 { top: 310px; left: 90px; animation: float3 3.5s ease-in-out infinite; }
+    .m4 { top: 140px; right: 60px; animation: float1 4.5s ease-in-out infinite reverse; }
+    .m5 { top: 360px; right: 80px; animation: float2 4s ease-in-out infinite reverse; }
+
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    @keyframes float3 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-13px); }
+    }
+
+    /* live badge on map */
+    .live-badge {
+      position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+      background: rgba(8,8,15,0.92);
+      border: 1px solid rgba(245,200,66,0.3);
+      border-radius: 20px;
+      padding: 10px 18px;
+      display: flex; align-items: center; gap: 10px;
+      z-index: 9; white-space: nowrap;
+    }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #EF4444; animation: pulse 1s infinite; }
+    .live-text { font-size: 11px; font-weight: 700; color: var(--white); }
+    .live-count { font-size: 11px; color: var(--gold); }
+
+    /* bottom nav */
+    .phone-nav {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: rgba(11,11,20,0.98);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-around;
+      z-index: 10;
+    }
+    .nav-item { font-size: 22px; opacity: 0.5; }
+    .nav-item.active { opacity: 1; }
+
+    /* glow behind phone */
+    .phone-glow {
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex; justify-content: center; gap: clamp(24px, 5vw, 80px);
+      flex-wrap: wrap;
+      padding: 60px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -2px;
+    }
+    .stat-label { font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 24px; }
+    .section-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900; line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 17px; color: var(--gray);
+      line-height: 1.8; max-width: 520px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--bg2); }
+    .how-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px; margin-top: 60px;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .step-card:hover { border-color: rgba(245,200,66,0.3); transform: translateY(-4px); }
+    .step-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .step-card:hover::before { opacity: 1; }
+    .step-num {
+      font-size: 48px; font-weight: 900;
+      color: rgba(245,200,66,0.15);
+      line-height: 1; margin-bottom: 16px;
+    }
+    .step-icon { font-size: 36px; margin-bottom: 16px; }
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .step-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+    /* ── SCENARIOS ── */
+    .scenarios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 60px;
+      max-width: 1000px; margin-left: auto; margin-right: auto;
+    }
+    .scenario-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: transform .3s, border-color .3s;
+    }
+    .scenario-card:hover { transform: translateY(-4px); border-color: rgba(245,200,66,0.25); }
+    .scenario-emoji { font-size: 40px; margin-bottom: 16px; }
+    .scenario-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .scenario-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+    .scenario-tag {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(245,200,66,0.1);
+      border: 1px solid rgba(245,200,66,0.25);
+      color: var(--gold);
+      font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 50px;
+    }
+
+    /* ── PARTNER ── */
+    .partner { background: var(--bg2); }
+    .partner-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    @media (max-width: 700px) {
+      .partner-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .partner-visual {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+    .partner-visual .big-emoji { font-size: 80px; margin-bottom: 20px; }
+    .partner-visual h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .partner-visual p { font-size: 14px; color: var(--gray); }
+    .benefits { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .benefit {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px;
+    }
+    .benefit-icon { font-size: 24px; flex-shrink: 0; }
+    .benefit-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .benefit-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+    /* ── CTA BOTTOM ── */
+    .cta-bottom {
+      text-align: center;
+      padding: 120px 24px;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute;
+      width: 600px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-bottom h2 {
+      font-size: clamp(28px, 5vw, 56px);
+      font-weight: 900; letter-spacing: -2px;
+      line-height: 1.15; margin-bottom: 20px;
+      position: relative;
+    }
+    .cta-bottom p { font-size: 17px; color: var(--gray); margin-bottom: 48px; position: relative; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .btn-gold-lg {
+      background: var(--gold); color: var(--bg);
+      font-size: 16px; font-weight: 900;
+      padding: 18px 40px; border-radius: 50px;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(245,200,66,0.25);
+    }
+    .btn-gold-lg:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(245,200,66,0.4); }
+    .btn-ghost-lg {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 16px; font-weight: 500;
+      padding: 18px 40px; border-radius: 50px;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-ghost-lg:hover { border-color: var(--gold); background: rgba(245,200,66,0.06); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-size: 16px; font-weight: 900; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 12px; color: #555; }
+
+    /* ── DOWNLOAD BADGES ── */
+    .store-badges {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 32px;
+    }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 12px 22px;
+      text-decoration: none; color: var(--white);
+      transition: border-color .2s, background .2s;
+    }
+    .store-btn:hover { border-color: var(--gold); background: rgba(245,200,66,0.06); }
+    .store-btn-icon { font-size: 24px; }
+    .store-btn-text { text-align: left; }
+    .store-btn-sub { font-size: 10px; color: var(--gray); }
+    .store-btn-name { font-size: 14px; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Celeb<span>Here</span></div>
+  <a href="#partner" class="nav-cta">유튜버 제휴 문의 →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    실시간 셀럽 위치 공유 플랫폼
+  </div>
+
+  <h1>
+    지금 내 주변의<br />
+    <span class="highlight">셀럽을 확인하세요.</span>
+  </h1>
+
+  <p class="hero-sub">
+    실시간 위치 기반 목격 정보 공유 플랫폼, 셀럽 히어.<br />
+    팬들이 직접 올리는 실시간 목격 정보로<br />
+    당신이 좋아하는 셀럽과 지금 같은 공간에 있을 수 있습니다.
+  </p>
+
+  <div class="store-badges">
+    <a href="#" class="store-btn">
+      <span class="store-btn-icon">🍎</span>
+      <div class="store-btn-text">
+        <div class="store-btn-sub">Download on the</div>
+        <div class="store-btn-name">App Store</div>
+      </div>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="store-btn-icon">▶</span>
+      <div class="store-btn-text">
+        <div class="store-btn-sub">Get it on</div>
+        <div class="store-btn-name">Google Play</div>
+      </div>
+    </a>
+    <a href="#" class="store-btn" style="border-color: rgba(245,200,66,0.4); background: rgba(245,200,66,0.06);">
+      <span class="store-btn-icon">🔴</span>
+      <div class="store-btn-text">
+        <div class="store-btn-sub" style="color: var(--gold);">지금 활성화된</div>
+        <div class="store-btn-name">라이브 이벤트 보기</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- MAP MOCKUP -->
+  <div class="map-container">
+    <div class="phone-glow"></div>
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <!-- Map background -->
+      <div class="map-bg">
+        <!-- Roads H -->
+        <div class="road-h" style="top: 30%"></div>
+        <div class="road-h" style="top: 55%"></div>
+        <div class="road-h" style="top: 78%"></div>
+        <!-- Roads V -->
+        <div class="road-v" style="left: 25%"></div>
+        <div class="road-v" style="left: 60%"></div>
+        <!-- Blocks -->
+        <div class="block" style="top:12%;left:5%;width:17%;height:14%"></div>
+        <div class="block" style="top:12%;left:32%;width:22%;height:14%"></div>
+        <div class="block" style="top:12%;right:5%;width:30%;height:14%"></div>
+        <div class="block" style="top:38%;left:5%;width:17%;height:12%"></div>
+        <div class="block" style="top:38%;left:32%;width:22%;height:12%"></div>
+        <div class="block" style="top:38%;right:5%;width:30%;height:12%"></div>
+        <div class="block" style="top:62%;left:5%;width:17%;height:12%"></div>
+        <div class="block" style="top:62%;left:32%;width:22%;height:12%"></div>
+        <div class="block" style="top:62%;right:5%;width:30%;height:12%"></div>
+      </div>
+
+      <div class="map-topbar">
+        <div class="map-search">🔍 셀럽을 검색하세요</div>
+      </div>
+
+      <!-- Marker 1 -->
+      <div class="marker m1">
+        <div class="marker-ripple" style="background: rgba(245,200,66,0.3);"></div>
+        <div class="marker-pin" style="background: var(--gold);">
+          <span class="emoji">⭐</span>
+        </div>
+        <div class="marker-label">아이유</div>
+      </div>
+
+      <!-- Marker 2 -->
+      <div class="marker m2">
+        <div class="marker-ripple" style="background: rgba(45,212,164,0.3); animation-delay: 0.5s;"></div>
+        <div class="marker-pin" style="background: var(--green);">
+          <span class="emoji">🎤</span>
+        </div>
+        <div class="marker-label">BTS 뷔</div>
+      </div>
+
+      <!-- Marker 3 -->
+      <div class="marker m3">
+        <div class="marker-ripple" style="background: rgba(139,92,246,0.3); animation-delay: 1s;"></div>
+        <div class="marker-pin" style="background: var(--purple);">
+          <span class="emoji">📺</span>
+        </div>
+        <div class="marker-label">침착맨</div>
+      </div>
+
+      <!-- Marker 4 -->
+      <div class="marker m4">
+        <div class="marker-ripple" style="background: rgba(239,68,68,0.3); animation-delay: 0.8s;"></div>
+        <div class="marker-pin" style="background: #EF4444;">
+          <span class="emoji">🎬</span>
+        </div>
+        <div class="marker-label">슈카월드</div>
+      </div>
+
+      <!-- Marker 5 -->
+      <div class="marker m5">
+        <div class="marker-ripple" style="background: rgba(245,200,66,0.3); animation-delay: 1.5s;"></div>
+        <div class="marker-pin" style="background: #F97316;">
+          <span class="emoji">🎮</span>
+        </div>
+        <div class="marker-label">우왁굳</div>
+      </div>
+
+      <!-- Live badge -->
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        <span class="live-text">지금 주변 활동</span>
+        <span class="live-count">24명 온라인</span>
+      </div>
+
+      <!-- Bottom nav -->
+      <div class="phone-nav">
+        <div class="nav-item active">🗺️</div>
+        <div class="nav-item">📋</div>
+        <div class="nav-item">🔔</div>
+        <div class="nav-item">👤</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">실시간</div>
+    <div class="stat-label">셀럽 위치 업데이트</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">무료</div>
+    <div class="stat-label">기본 앱 사용</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">직접</div>
+    <div class="stat-label">팬이 올리는 정보</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">언제 어디서나</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">셀럽 히어, 이렇게 작동해요</h2>
+    <p class="section-desc" style="margin: 0 auto;">팬들이 목격한 셀럽의 위치를 실시간으로 지도에 공유합니다. 지금 어디에 있는지 바로 확인하세요.</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📍</div>
+        <div class="step-title">목격 등록</div>
+        <div class="step-desc">셀럽을 목격하면 앱에서 위치와 함께 실시간으로 등록합니다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🗺️</div>
+        <div class="step-title">지도 확인</div>
+        <div class="step-desc">실시간으로 업데이트되는 지도에서 내 주변 셀럽 위치를 확인합니다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🔔</div>
+        <div class="step-title">알림 수신</div>
+        <div class="step-desc">좋아하는 셀럽이 내 근처에 나타나면 즉시 푸시 알림을 받습니다.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">🤝</div>
+        <div class="step-title">팬과 소통</div>
+        <div class="step-desc">같은 장소의 팬들과 정보를 공유하고 함께 특별한 순간을 만듭니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBER SCENARIOS -->
+<section id="scenarios" style="max-width: 1100px; margin: 0 auto;">
+  <div class="section-tag">For Creators</div>
+  <h2 class="section-title">유튜버를 위한<br /><span style="color: var(--gold)">콘텐츠 시나리오</span></h2>
+  <p class="section-desc">셀럽 히어로 새로운 콘텐츠 포맷을 만들어 보세요. 팬들과 실시간으로 연결되는 예능이 탄생합니다.</p>
+
+  <div class="scenarios-grid">
+    <div class="scenario-card">
+      <div class="scenario-emoji">🏃</div>
+      <div class="scenario-title">실시간 숨바꼭질</div>
+      <div class="scenario-desc">도심 속 숨바꼭질! 유튜버가 위치를 공유하면 팬들이 앱으로 추적. 먼저 찾은 팬에게 특별한 리워드를 제공합니다.</div>
+      <div class="scenario-tag"># 실시간 인터랙션</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-emoji">🗺️</div>
+      <div class="scenario-title">성지순례 지도 제작</div>
+      <div class="scenario-desc">내가 자주 가는 장소를 셀럽 히어에 등록해 팬들만의 성지순례 루트를 만들어 드립니다. 팬심을 콘텐츠로!</div>
+      <div class="scenario-tag"># 팬과 함께</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-emoji">📡</div>
+      <div class="scenario-title">야외 방송 팬미팅</div>
+      <div class="scenario-desc">방송 시작과 동시에 위치를 공유하면 근처 팬들이 실시간으로 모입니다. 기획 없이 자연스러운 팬미팅 완성.</div>
+      <div class="scenario-tag"># 즉흥 이벤트</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-emoji">🎯</div>
+      <div class="scenario-title">팬 서프라이즈</div>
+      <div class="scenario-desc">특정 장소에서 기다리는 팬들을 앱으로 확인하고 깜짝 등장. 팬과 셀럽 모두가 주인공이 되는 순간.</div>
+      <div class="scenario-tag"># 서프라이즈</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-emoji">🏆</div>
+      <div class="scenario-title">리얼 팬 챌린지</div>
+      <div class="scenario-desc">셀럽이 미션을 공개하고 앱으로 찾아온 팬들과 현장 미션 수행. 참여 영상을 업로드하면 구독자 폭발 보장.</div>
+      <div class="scenario-tag"># 바이럴 콘텐츠</div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-emoji">🌟</div>
+      <div class="scenario-title">셀럽 On-Air 이벤트</div>
+      <div class="scenario-desc">셀럽 히어 프리미엄 기능으로 실시간 방송 위치를 전달. 진짜 팬들이 현장으로 모이는 라이브 이벤트.</div>
+      <div class="scenario-tag"># 프리미엄 기능</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER SECTION -->
+<section id="partner" class="partner">
+  <div class="partner-inner">
+    <div>
+      <div class="section-tag">Partner Program</div>
+      <h2 class="section-title">
+        방송 켜고<br />
+        위치만 공유하세요.<br />
+        <span style="color: var(--gold)">팬미팅은<br />저희가 만들어 드립니다.</span>
+      </h2>
+      <p class="section-desc">
+        팬들과의 특별한 만남을 기획하시나요?<br />
+        셀럽 히어가 당신의 야외 방송을 예능으로 만들어 드립니다.
+      </p>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <div>
+            <div class="benefit-title">즉시 시작 가능</div>
+            <div class="benefit-desc">복잡한 기획 없이 앱 하나로 바로 팬들과 연결됩니다.</div>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">📊</div>
+          <div>
+            <div class="benefit-title">실시간 참여 현황</div>
+            <div class="benefit-desc">몇 명의 팬이 근처에 있는지, 얼마나 참여 중인지 실시간으로 확인합니다.</div>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🎁</div>
+          <div>
+            <div class="benefit-title">파트너 전용 혜택</div>
+            <div class="benefit-desc">공식 파트너에게 전용 프로필 배지, 우선 노출, 콜라보 지원을 제공합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="partner-visual">
+      <div class="big-emoji">🎬</div>
+      <h3>"야외 방송이<br />팬미팅이 되는 경험"</h3>
+      <p style="margin-top: 8px; font-size: 13px; color: var(--gray);">
+        유튜버가 위치를 공유하는 순간,<br />팬들은 지도에서 실시간으로 확인합니다.
+      </p>
+      <div style="margin-top: 28px; padding: 20px; background: rgba(245,200,66,0.06); border: 1px solid rgba(245,200,66,0.2); border-radius: 16px;">
+        <div style="font-size: 12px; color: var(--gray); margin-bottom: 8px;">현재 라이브 이벤트</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; animation: pulse 1s infinite;"></div>
+          <span style="font-size: 14px; font-weight: 700;">우왁굳 — 홍대 야외 방송 중</span>
+        </div>
+        <div style="font-size: 12px; color: var(--gold); margin-top: 6px;">팬 247명 이동 중 →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="cta-bottom">
+  <div class="cta-glow"></div>
+  <h2>지금 바로 시작하세요</h2>
+  <p>셀럽 히어와 함께 팬들과의 새로운 순간을 만들어 보세요.</p>
+  <div class="cta-buttons">
+    <a href="#" class="btn-gold-lg">📱 앱 다운로드</a>
+    <a href="mailto:doimoi00@gmail.com?subject=셀럽히어 유튜버 제휴 문의" class="btn-ghost-lg">✉️ 유튜버 제휴 문의</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Celeb<span>Here</span></div>
+  <div class="footer-links">
+    <a href="#">앱 다운로드</a>
+    <a href="#partner">파트너 신청</a>
+    <a href="mailto:doimoi00@gmail.com">문의하기</a>
+  </div>
+  <div class="footer-copy">© 2025 CelebHere. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
