@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>셀럽 히어 — 유튜버 파트너 제안</title>
+  <title>Celeb Here — Creator Partner Program</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,7 +25,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--white);
       overflow-x: hidden;
@@ -95,7 +95,7 @@
       font-size: clamp(16px, 2vw, 20px);
       color: var(--gray);
       line-height: 1.7;
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto 48px;
     }
 
@@ -154,7 +154,6 @@
         repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.04) 40px),
         #0E1520;
     }
-    /* Road lines */
     .road-h {
       position: absolute; left: 0; right: 0; height: 18px;
       background: #1A2535;
@@ -167,13 +166,11 @@
       border-left: 1px solid rgba(255,255,255,0.06);
       border-right: 1px solid rgba(255,255,255,0.06);
     }
-    /* Blocks */
     .block {
       position: absolute;
       background: #131F30;
       border-radius: 4px;
     }
-    /* Map top bar */
     .map-topbar {
       position: absolute; top: 26px; left: 0; right: 0;
       height: 48px;
@@ -190,7 +187,6 @@
       display: flex; align-items: center; gap: 6px;
     }
 
-    /* Markers */
     .marker {
       position: absolute;
       display: flex; flex-direction: column; align-items: center;
@@ -246,7 +242,6 @@
       50% { transform: translateY(-13px); }
     }
 
-    /* live badge on map */
     .live-badge {
       position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
       background: rgba(8,8,15,0.92);
@@ -260,7 +255,6 @@
     .live-text { font-size: 11px; font-weight: 700; color: var(--white); }
     .live-count { font-size: 11px; color: var(--gold); }
 
-    /* bottom nav */
     .phone-nav {
       position: absolute; bottom: 0; left: 0; right: 0;
       height: 60px;
@@ -272,7 +266,6 @@
     .nav-item { font-size: 22px; opacity: 0.5; }
     .nav-item.active { opacity: 1; }
 
-    /* glow behind phone */
     .phone-glow {
       position: absolute;
       width: 300px; height: 300px;
@@ -480,6 +473,16 @@
     .store-btn-text { text-align: left; }
     .store-btn-sub { font-size: 10px; color: var(--gray); }
     .store-btn-name { font-size: 14px; font-weight: 700; }
+
+    /* ── LANG SWITCH ── */
+    .lang-switch {
+      font-size: 12px; color: var(--gray);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 5px 12px; border-radius: 50px;
+      transition: color .2s, border-color .2s;
+    }
+    .lang-switch:hover { color: var(--white); border-color: rgba(255,255,255,0.35); }
   </style>
 </head>
 <body>
@@ -488,8 +491,8 @@
 <nav>
   <div class="logo">Celeb<span>Here</span></div>
   <div style="display:flex; align-items:center; gap:16px;">
-    <a href="en.html" style="font-size:12px; color:#9999AA; text-decoration:none; border:1px solid rgba(255,255,255,0.15); padding:5px 12px; border-radius:50px; transition:color .2s, border-color .2s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.35)'" onmouseout="this.style.color='#9999AA';this.style.borderColor='rgba(255,255,255,0.15)'">🇺🇸 English</a>
-    <a href="#partner" class="nav-cta">유튜버 제휴 문의 →</a>
+    <a href="index.html" class="lang-switch">🇰🇷 한국어</a>
+    <a href="#partner" class="nav-cta">Partner Inquiry →</a>
   </div>
 </nav>
 
@@ -497,18 +500,18 @@
 <section class="hero">
   <div class="hero-badge">
     <span class="badge-dot"></span>
-    동의 기반 셀럽 인증샷 플랫폼
+    Consent-Based Celebrity Photo Platform
   </div>
 
   <h1>
-    셀럽과 함께,<br />
-    <span class="highlight">동의 하에 인증샷.</span>
+    Meet Celebs,<br />
+    <span class="highlight">Take Photos Together.</span>
   </h1>
 
   <p class="hero-sub">
-    일방적인 목격이 아닌, 서로가 원하는 소중한 만남.<br />
-    셀럽과 팬이 동의해 함께 찍는 인증샷 플랫폼, 셀럽 히어.<br />
-    얼굴이 걱정된다면? 스티커로 가릴 수 있습니다.
+    Not a one-sided sighting — a genuine encounter where both sides agree.<br />
+    Celeb Here is the platform where fans and celebs take photos by mutual consent.<br />
+    Worried about showing your face? Cover it with stickers.
   </p>
 
   <div class="store-badges">
@@ -529,8 +532,8 @@
     <a href="#" class="store-btn" style="border-color: rgba(245,200,66,0.4); background: rgba(245,200,66,0.06);">
       <span class="store-btn-icon">🔴</span>
       <div class="store-btn-text">
-        <div class="store-btn-sub" style="color: var(--gold);">지금 활성화된</div>
-        <div class="store-btn-name">라이브 이벤트 보기</div>
+        <div class="store-btn-sub" style="color: var(--gold);">Currently Active</div>
+        <div class="store-btn-name">View Live Events</div>
       </div>
     </a>
   </div>
@@ -540,16 +543,12 @@
     <div class="phone-glow"></div>
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <!-- Map background -->
       <div class="map-bg">
-        <!-- Roads H -->
         <div class="road-h" style="top: 30%"></div>
         <div class="road-h" style="top: 55%"></div>
         <div class="road-h" style="top: 78%"></div>
-        <!-- Roads V -->
         <div class="road-v" style="left: 25%"></div>
         <div class="road-v" style="left: 60%"></div>
-        <!-- Blocks -->
         <div class="block" style="top:12%;left:5%;width:17%;height:14%"></div>
         <div class="block" style="top:12%;left:32%;width:22%;height:14%"></div>
         <div class="block" style="top:12%;right:5%;width:30%;height:14%"></div>
@@ -562,62 +561,55 @@
       </div>
 
       <div class="map-topbar">
-        <div class="map-search">🔍 만나고 싶은 셀럽 검색</div>
+        <div class="map-search">🔍 Search your favorite celeb</div>
       </div>
 
-      <!-- Marker 1 -->
       <div class="marker m1">
         <div class="marker-ripple" style="background: rgba(245,200,66,0.3);"></div>
         <div class="marker-pin" style="background: var(--gold);">
           <span class="emoji">⭐</span>
         </div>
-        <div class="marker-label">아이유</div>
+        <div class="marker-label">IU</div>
       </div>
 
-      <!-- Marker 2 -->
       <div class="marker m2">
         <div class="marker-ripple" style="background: rgba(45,212,164,0.3); animation-delay: 0.5s;"></div>
         <div class="marker-pin" style="background: var(--green);">
           <span class="emoji">🎤</span>
         </div>
-        <div class="marker-label">BTS 뷔</div>
+        <div class="marker-label">BTS V</div>
       </div>
 
-      <!-- Marker 3 -->
       <div class="marker m3">
         <div class="marker-ripple" style="background: rgba(139,92,246,0.3); animation-delay: 1s;"></div>
         <div class="marker-pin" style="background: var(--purple);">
           <span class="emoji">📺</span>
         </div>
-        <div class="marker-label">침착맨</div>
+        <div class="marker-label">Chimchakman</div>
       </div>
 
-      <!-- Marker 4 -->
       <div class="marker m4">
         <div class="marker-ripple" style="background: rgba(239,68,68,0.3); animation-delay: 0.8s;"></div>
         <div class="marker-pin" style="background: #EF4444;">
           <span class="emoji">🎬</span>
         </div>
-        <div class="marker-label">슈카월드</div>
+        <div class="marker-label">ShukaWorld</div>
       </div>
 
-      <!-- Marker 5 -->
       <div class="marker m5">
         <div class="marker-ripple" style="background: rgba(245,200,66,0.3); animation-delay: 1.5s;"></div>
         <div class="marker-pin" style="background: #F97316;">
           <span class="emoji">🎮</span>
         </div>
-        <div class="marker-label">우왁굳</div>
+        <div class="marker-label">Wowakgood</div>
       </div>
 
-      <!-- Live badge -->
       <div class="live-badge">
         <div class="live-dot"></div>
-        <span class="live-text">지금 주변 활동</span>
-        <span class="live-count">24명 온라인</span>
+        <span class="live-text">Nearby Activity</span>
+        <span class="live-count">24 Online</span>
       </div>
 
-      <!-- Bottom nav -->
       <div class="phone-nav">
         <div class="nav-item active">🗺️</div>
         <div class="nav-item">📋</div>
@@ -631,20 +623,20 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item">
-    <div class="stat-num">실시간</div>
-    <div class="stat-label">셀럽 위치 업데이트</div>
+    <div class="stat-num">Real-Time</div>
+    <div class="stat-label">Celeb Location Updates</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">무료</div>
-    <div class="stat-label">기본 앱 사용</div>
+    <div class="stat-num">Free</div>
+    <div class="stat-label">Basic App Access</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">동의</div>
-    <div class="stat-label">기반 인증샷</div>
+    <div class="stat-num">Consent</div>
+    <div class="stat-label">Based Photos</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">24/7</div>
-    <div class="stat-label">언제 어디서나</div>
+    <div class="stat-label">Anytime, Anywhere</div>
   </div>
 </div>
 
@@ -652,79 +644,79 @@
 <section class="how">
   <div class="how-inner">
     <div class="section-tag">How It Works</div>
-    <h2 class="section-title">셀럽 히어, 이렇게 작동해요</h2>
-    <p class="section-desc" style="margin: 0 auto;">일방적인 목격이 아닙니다. 셀럽과 팬이 서로 동의해 함께 만드는 인증샷 플랫폼입니다.</p>
+    <h2 class="section-title">Here's How Celeb Here Works</h2>
+    <p class="section-desc" style="margin: 0 auto;">Not a one-sided sighting. Celeb Here is a mutual consent photo platform where fans and celebs create moments together.</p>
     <div class="steps">
       <div class="step-card">
         <div class="step-num">01</div>
         <div class="step-icon">🗺️</div>
-        <div class="step-title">위치 확인</div>
-        <div class="step-desc">실시간 지도에서 내 주변 셀럽의 위치를 확인합니다. 좋아하는 셀럽이 근처에 있으면 알림을 받습니다.</div>
+        <div class="step-title">Check the Map</div>
+        <div class="step-desc">See celeb locations on a real-time map. Get an instant push notification when your favorite celeb is nearby.</div>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
         <div class="step-icon">🤝</div>
-        <div class="step-title">인증샷 요청</div>
-        <div class="step-desc">셀럽에게 인증샷을 정중하게 요청합니다. 셀럽이 동의해야만 촬영이 가능합니다.</div>
+        <div class="step-title">Request a Photo</div>
+        <div class="step-desc">Politely send a photo request to the celeb. The photo can only be taken once the celeb approves.</div>
       </div>
       <div class="step-card">
         <div class="step-num">03</div>
         <div class="step-icon">🎭</div>
-        <div class="step-title">스티커로 꾸미기</div>
-        <div class="step-desc">얼굴 노출이 걱정된다면 스티커 기능으로 자유롭게 가리고 꾸밀 수 있습니다. 나만의 스타일로!</div>
+        <div class="step-title">Add Stickers</div>
+        <div class="step-desc">Worried about showing your face? Cover and decorate it freely with stickers. Express your own style!</div>
       </div>
       <div class="step-card">
         <div class="step-num">04</div>
         <div class="step-icon">⭐</div>
-        <div class="step-title">추억 공유</div>
-        <div class="step-desc">완성된 인증샷을 원본 그대로 다운받고, 팬 커뮤니티에 자랑하세요.</div>
+        <div class="step-title">Save & Share</div>
+        <div class="step-desc">Download the original photo and share your memory with the fan community.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- YOUTUBER SCENARIOS -->
+<!-- CREATOR SCENARIOS -->
 <section id="scenarios" style="max-width: 1100px; margin: 0 auto;">
   <div class="section-tag">For Creators</div>
-  <h2 class="section-title">유튜버를 위한<br /><span style="color: var(--gold)">콘텐츠 시나리오</span></h2>
-  <p class="section-desc">셀럽 히어로 새로운 콘텐츠 포맷을 만들어 보세요. 팬과 크리에이터가 함께 만드는 진짜 예능이 탄생합니다.</p>
+  <h2 class="section-title">Content Scenarios<br /><span style="color: var(--gold)">For Creators</span></h2>
+  <p class="section-desc">Create new content formats with Celeb Here. Real entertainment — built together by fans and creators.</p>
 
   <div class="scenarios-grid">
     <div class="scenario-card">
       <div class="scenario-emoji">🏃</div>
-      <div class="scenario-title">실시간 숨바꼭질</div>
-      <div class="scenario-desc">도심 속 숨바꼭질! 유튜버가 위치를 공유하면 팬들이 앱으로 추적. 먼저 찾아온 팬과 함께 동의 인증샷을 찍고 특별한 리워드를 드립니다.</div>
-      <div class="scenario-tag"># 실시간 인터랙션</div>
+      <div class="scenario-title">Live Hide & Seek</div>
+      <div class="scenario-desc">Urban hide-and-seek! Share your location and fans track you via the app. The first fan to find you gets a consent photo-op and a special reward.</div>
+      <div class="scenario-tag"># Real-Time Interaction</div>
     </div>
     <div class="scenario-card">
       <div class="scenario-emoji">🗺️</div>
-      <div class="scenario-title">성지순례 지도 제작</div>
-      <div class="scenario-desc">내가 자주 가는 장소를 셀럽 히어에 등록해 팬들만의 성지순례 루트를 만들어 드립니다. 방문 팬과의 인증샷이 자동으로 성지 인증이 됩니다.</div>
-      <div class="scenario-tag"># 팬과 함께</div>
+      <div class="scenario-title">Sacred Spot Map</div>
+      <div class="scenario-desc">Register your favorite hangouts on Celeb Here and build a pilgrimage route just for your fans. A photo with every visit automatically becomes a spot verification.</div>
+      <div class="scenario-tag"># With Fans</div>
     </div>
     <div class="scenario-card">
       <div class="scenario-emoji">📡</div>
-      <div class="scenario-title">야외 방송 팬미팅</div>
-      <div class="scenario-desc">방송 중 위치를 공개하면 팬들이 찾아옵니다. 현장에서 원하는 팬과 동의 하에 인증샷. 기획 없이 자연스러운 팬미팅이 완성됩니다.</div>
-      <div class="scenario-tag"># 즉흥 이벤트</div>
+      <div class="scenario-title">Outdoor Broadcast Fan Meet</div>
+      <div class="scenario-desc">Share your location mid-stream and fans will come to you. Take consent photos with fans on-site — an effortless, spontaneous fan meet, no planning required.</div>
+      <div class="scenario-tag"># Spontaneous Event</div>
     </div>
     <div class="scenario-card">
       <div class="scenario-emoji">🎯</div>
-      <div class="scenario-title">서프라이즈 인증샷</div>
-      <div class="scenario-desc">특정 장소에서 기다리는 팬들을 앱으로 확인하고 깜짝 등장. 셀럽이 먼저 동의해 팬에게 인증샷을 제안하는 역발상 콘텐츠!</div>
-      <div class="scenario-tag"># 서프라이즈</div>
+      <div class="scenario-title">Surprise Photo Drop</div>
+      <div class="scenario-desc">See fans waiting at a spot via the app and make a surprise appearance. Flip the script — the celeb offers the photo request first for an unforgettable twist.</div>
+      <div class="scenario-tag"># Surprise</div>
     </div>
     <div class="scenario-card">
       <div class="scenario-emoji">🎭</div>
-      <div class="scenario-title">스티커 인증샷 챌린지</div>
-      <div class="scenario-desc">얼굴 공개가 부담스러운 팬도 OK. 스티커로 꾸민 인증샷 챌린지로 참여 장벽을 낮추고 바이럴을 극대화하세요.</div>
-      <div class="scenario-tag"># 바이럴 콘텐츠</div>
+      <div class="scenario-title">Sticker Photo Challenge</div>
+      <div class="scenario-desc">Even camera-shy fans can join. Lower the barrier with a sticker photo challenge and watch the viral potential explode across every platform.</div>
+      <div class="scenario-tag"># Viral Content</div>
     </div>
     <div class="scenario-card">
       <div class="scenario-emoji">🌟</div>
-      <div class="scenario-title">셀럽 On-Air 이벤트</div>
-      <div class="scenario-desc">셀럽 히어 프리미엄 기능으로 실시간 방송 위치를 공개. 현장에 온 팬들과 동의 인증샷을 찍고 원본 사진을 선물로 드립니다.</div>
-      <div class="scenario-tag"># 프리미엄 기능</div>
+      <div class="scenario-title">Celeb On-Air Event</div>
+      <div class="scenario-desc">Go live with Celeb Here's premium location broadcast. Take consent photos with fans who show up and gift them the original download as a keepsake.</div>
+      <div class="scenario-tag"># Premium Feature</div>
     </div>
   </div>
 </section>
@@ -735,51 +727,51 @@
     <div>
       <div class="section-tag">Partner Program</div>
       <h2 class="section-title">
-        동의 한 번으로<br />
-        팬과 연결되세요.<br />
-        <span style="color: var(--gold)">진짜 만남은<br />저희가 만들어 드립니다.</span>
+        One Consent.<br />
+        One Connection.<br />
+        <span style="color: var(--gold)">We'll Build<br />the Memory.</span>
       </h2>
       <p class="section-desc">
-        팬들과의 특별한 만남을 기획하시나요?<br />
-        셀럽 히어가 서로 동의한 진심 어린 팬미팅을 만들어 드립니다.
+        Looking to create a special moment with your fans?<br />
+        Celeb Here turns a simple consent into a genuine fan meet.
       </p>
       <div class="benefits">
         <div class="benefit">
           <div class="benefit-icon">⚡</div>
           <div>
-            <div class="benefit-title">즉시 시작 가능</div>
-            <div class="benefit-desc">복잡한 기획 없이 앱 하나로 바로 팬들과 동의 인증샷을 찍을 수 있습니다.</div>
+            <div class="benefit-title">Start Instantly</div>
+            <div class="benefit-desc">No complex planning needed. Connect with fans right away through a single app.</div>
           </div>
         </div>
         <div class="benefit">
           <div class="benefit-icon">🎭</div>
           <div>
-            <div class="benefit-title">스티커 & 원본 다운로드</div>
-            <div class="benefit-desc">얼굴 노출이 걱정되는 팬도 스티커로 자유롭게 꾸밀 수 있고, 원본 사진을 그대로 받을 수 있습니다.</div>
+            <div class="benefit-title">Stickers & Original Download</div>
+            <div class="benefit-desc">Camera-shy fans can cover their face with stickers, and everyone gets the original photo to keep.</div>
           </div>
         </div>
         <div class="benefit">
           <div class="benefit-icon">🎁</div>
           <div>
-            <div class="benefit-title">파트너 전용 혜택</div>
-            <div class="benefit-desc">공식 파트너에게 전용 프로필 배지, 우선 노출, 콜라보 지원을 제공합니다.</div>
+            <div class="benefit-title">Partner Exclusive Benefits</div>
+            <div class="benefit-desc">Official partners receive a dedicated profile badge, priority visibility, and collab support.</div>
           </div>
         </div>
       </div>
     </div>
     <div class="partner-visual">
       <div class="big-emoji">🎬</div>
-      <h3>"동의 하나가<br />추억이 되는 경험"</h3>
+      <h3>"One Consent Becomes<br />a Lifetime Memory"</h3>
       <p style="margin-top: 8px; font-size: 13px; color: var(--gray);">
-        크리에이터가 동의하는 순간,<br />팬에게는 평생 간직할 인증샷이 생깁니다.
+        The moment a creator says yes,<br />a fan gets a photo they'll treasure forever.
       </p>
       <div style="margin-top: 28px; padding: 20px; background: rgba(245,200,66,0.06); border: 1px solid rgba(245,200,66,0.2); border-radius: 16px;">
-        <div style="font-size: 12px; color: var(--gray); margin-bottom: 8px;">현재 라이브 이벤트</div>
+        <div style="font-size: 12px; color: var(--gray); margin-bottom: 8px;">Live Event Now</div>
         <div style="display: flex; align-items: center; gap: 8px;">
           <div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; animation: pulse 1s infinite;"></div>
-          <span style="font-size: 14px; font-weight: 700;">우왁굳 — 홍대 야외 방송 중</span>
+          <span style="font-size: 14px; font-weight: 700;">Wowakgood — Live in Hongdae</span>
         </div>
-        <div style="font-size: 12px; color: var(--gold); margin-top: 6px;">팬 247명 이동 중 →</div>
+        <div style="font-size: 12px; color: var(--gold); margin-top: 6px;">247 fans on their way →</div>
       </div>
     </div>
   </div>
@@ -788,11 +780,11 @@
 <!-- CTA BOTTOM -->
 <section class="cta-bottom">
   <div class="cta-glow"></div>
-  <h2>동의 하나로<br />특별한 순간을 만드세요</h2>
-  <p>셀럽과 팬이 함께 만드는 진심 어린 인증샷. 셀럽 히어가 시작합니다.</p>
+  <h2>One Consent Creates<br />a Special Moment</h2>
+  <p>Genuine photos, built together by fans and celebs. Celeb Here makes it happen.</p>
   <div class="cta-buttons">
-    <a href="#" class="btn-gold-lg">📱 앱 다운로드</a>
-    <a href="mailto:doimoi00@gmail.com?subject=셀럽히어 유튜버 제휴 문의" class="btn-ghost-lg">✉️ 유튜버 제휴 문의</a>
+    <a href="#" class="btn-gold-lg">📱 Download the App</a>
+    <a href="mailto:doimoi00@gmail.com?subject=Celeb Here Creator Partnership Inquiry" class="btn-ghost-lg">✉️ Creator Partnership Inquiry</a>
   </div>
 </section>
 
@@ -800,9 +792,9 @@
 <footer>
   <div class="footer-logo">Celeb<span>Here</span></div>
   <div class="footer-links">
-    <a href="#">앱 다운로드</a>
-    <a href="#partner">파트너 신청</a>
-    <a href="mailto:doimoi00@gmail.com">문의하기</a>
+    <a href="#">Download App</a>
+    <a href="#partner">Partner Program</a>
+    <a href="mailto:doimoi00@gmail.com">Contact Us</a>
   </div>
   <div class="footer-copy">© 2025 CelebHere. All rights reserved.</div>
 </footer>
